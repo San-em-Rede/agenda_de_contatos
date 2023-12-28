@@ -15,10 +15,9 @@
         <header>
             <h1>Anote seus contatos</h1>
         </header>
-        <form>
-            <input type="hidden" name="id"/>
-            <input type="text" id="nome-contato" max length= "50" required placeholder="Nome do contato"/>
-            <input type="number" id="telefone-contato" max length= "50" required placeholder="Telefone"/>
+        <form id="form-contato">
+            <input type="text" id="nome-contato" required placeholder="Nome do contato"/>
+            <input type="number" id ="telefone-contato" required placeholder="Telefone"/>
             <button type="submit">Adicionar +</button>
         </form>
         <table cellspacing="0">
@@ -31,13 +30,12 @@
                     <th>Existente</th>
                 </tr>
             </thead>
+            <tbody>
+                <td>Ricardo Milos</td>
+                <td>97 9999-9999</td>
+                <td>existe</td>
+            </tbody>
         </table>
-        <div class="list">
-            <input type="text" placeholder="Pesquisar">
-            <ul>
-
-            </ul>
-        </div>
     </div>
     <script src="./main.js"></script>
 </body>

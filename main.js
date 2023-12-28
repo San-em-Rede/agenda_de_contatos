@@ -1,64 +1,44 @@
-let lista = localStorage.getItem("minhaLista");
+const form = document.getElementById('form-contato');
+const contatos = [];
+const telefones = [];
 
-const formulario = document.querySelector("form");
-const ulPessoas = document.querySelector("ul");
+let linhas = '';
 
-    if (lista) {
-        lista = JSON.parse(lista);
-    } else {
-        lista =[]
-    }
-
-formulario.addEventListener('submit', function(e) {
+form.addEventListener('submit', function(e) {
     e.preventDefault();
-    let novaPessoa = new Object();
-    novaPessoa.nome = this.nome.value;
-    novaPessoa.telefone = this.telefone.value;
 
-    if (this.id.value !== "" && this.id.value >=0) {
-        lista[this.id.value] = novaPessoa;
-    } else {
-        lista.push(NovaPessoa);
-    }
-
-    this.reset();
-    this.id.value = null;
-
-    salvarLS();
-
-    listar();
-
+    adicionaLinha();
+    atualizaTabela();
+    atualizaMédiaFinal() ;
 });
 
-function listar(filtro='') {
-    ulPessoas.innerHTML = "";
-    lista.forEach((item,key) => {
+function adicionaLinha() {
+    const inputNomeContato = document.getElementById('nome-contato');
+    const inputTelefoneContato = document.getElementById('telefone-contato');
 
-        if (item.nome.toUpperCase.indexOf(filtro.toUpperCase()) >= 0 || filtro =="") {
-        linha = document.createElement('li');
+    contatos.push(inputNomeContato.value);
+    telefones.push(inputTelefoneContato.value);
 
-        let s = `<button onClick="excluir(${key})">[Excluir]</button>
-                <button onClick="editar(${key})">[Editar]</button>`
+    let linha = '<tr>';
+    linha += `<td>${inputNomeContato.value}</td>`;
+    linha += `<td>${inputTelefoneContato.value}</td>`;
+    linha += `<td>${inputTelefoneContato.value >= '00 0000 000' ? 'sim' : 'não'}</td>`;
+    linha += '<tr>';
 
-        linha.innerHTML = "Nome: " + item.nome + " Telefone: " + item.telefone + s;
-        ulPessoas.appendChild(linha);
-        }
-    });
+    linhas += linha;
+
+    inputNomeContato.value = '';
+    inputNomeContato.value = '';
+
+    alert(`Contato: ${inputNomeContato.value} - Telefone: ${inputTelefoneContato.value}`);
 }
 
-function excluir(id) {
-    formulario.reset();
-    lista.splice(id, 1);
-    salvarLS(lista);
-    listar();
+function atualizaTabela() {
+    const corpoTabela = document.querySelector('tbody');
+    corpoTabela.innerHTML = linhas;
 }
 
-function editar(id) {
-    formulario.id.value = id;
-    formulario.nome.value = lista[id].nome;
-    formulario.telefone.value = lista[id].telefone;
-}
-
-function salvarLS(lista) {
-    localStorage.setItem("minhaLista", JSON.stringify(lista));
+function atualizaMédiaFinal() {
+    console.log(atividades);
+    console.log(notas);
 }
