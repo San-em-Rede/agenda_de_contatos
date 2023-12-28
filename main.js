@@ -22,7 +22,7 @@ function adicionaLinha() {
     let linha = '<tr>';
     linha += `<td>${inputNomeContato.value}</td>`;
     linha += `<td>${inputTelefoneContato.value}</td>`;
-    linha += `<td>${inputTelefoneContato.value >= '00 0000 000' ? 'sim' : 'não'}</td>`;
+    linha += `<td>${inputTelefoneContato.value >= 'string' ? 'não' : 'sim'}</td>`;
     linha += '<tr>';
 
     linhas += linha;
